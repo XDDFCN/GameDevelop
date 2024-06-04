@@ -25,22 +25,23 @@ boardID = gameCanvas.create_rectangle(0,470,70,480,fill="black", outline="black"
 
 moveXBall = random.random() * 10 - 5  # -5，5
 moveYBall = random.random() * 10 - 5
+# moveXBoard = random.random() * 10 - 5  # -5，5
 
-def moveLeft(event):
-    print("Left")
-    pass
-def moveRight(event):
-    print("Right")
-    pass
+class Board:
+    moveXBoard = random.random() * 10 - 5  # -5，5
+    def moveLeft(self,event):
+        self.moveXBoard = -5
+    def moveRight(self,event):
+        self.moveXBoard = 5
+board = Board()
 
-mainWindow.bind("<Left>",moveLeft)
-mainWindow.bind("<Right>",moveRight)
+mainWindow.bind("<Left>",board.moveLeft)
+mainWindow.bind("<Right>",board.moveRight)
 
 while True:
-    moveXBoard = random.random() * 10 - 5  # -5，5
     boardCoord = gameCanvas.coords(boardID)
-    if boardCoord[0]+moveXBoard>=0 and boardCoord[2]+moveXBoard<=500:
-        gameCanvas.move(boardID, moveXBoard, 0)
+    if boardCoord[0]+board.moveXBoard>=0 and boardCoord[2]+board.moveXBoard<=500:
+        gameCanvas.move(boardID, board.moveXBoard, 0)
         # mainWindow.update()
         # time.sleep(0.02)
 
