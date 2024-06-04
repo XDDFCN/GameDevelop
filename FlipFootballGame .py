@@ -25,7 +25,6 @@ boardID = gameCanvas.create_rectangle(0,470,70,480,fill="black", outline="black"
 
 moveXBall = random.random() * 10 - 5  # -5，5
 moveYBall = random.random() * 10 - 5
-# moveXBoard = random.random() * 10 - 5  # -5，5
 
 class Board:
     moveXBoard = 0
@@ -42,8 +41,6 @@ while True:
     boardCoord = gameCanvas.coords(boardID)
     if boardCoord[0]+board.moveXBoard>=0 and boardCoord[2]+board.moveXBoard<=500:
         gameCanvas.move(boardID, board.moveXBoard, 0)
-        # mainWindow.update()
-        # time.sleep(0.02)
 
     ballCoord = gameCanvas.coords(ovalID)
     if ballCoord[0]+moveXBall>0 and ballCoord[1]+moveYBall>0 and ballCoord[2]+moveXBall<500 and ballCoord[3]+moveYBall<500:
@@ -53,16 +50,13 @@ while True:
             signY = math.copysign(1, random.random() - 0.5)
             moveXBall = (random.random() * 4 + 4) * signX
             moveYBall = (random.random() * 4 + 4) * signY
-        # mainWindow.update()
-        # time.sleep(0.02)   #小球每移动一下停留的秒数
+
     elif ballCoord[0]+moveXBall<=0 or ballCoord[1]+moveYBall>=0 or ballCoord[2]+moveXBall>=500 or ballCoord[3]+moveYBall<=500:
         signX = math.copysign(1, random.random() - 0.5)
         signY = math.copysign(1, random.random() - 0.5)
         moveXBall = (random.random() * 4 + 4)*signX
         moveYBall = (random.random() * 4 + 4)*signY
 
-
-
     mainWindow.update()
     time.sleep(0.08)
-# mainWindow.mainloop()   #可有可无，跳不出while True循环
+
