@@ -17,14 +17,23 @@ gameCanvas = tkinter.Canvas(mainWindow, width=500, height=500)
 gameCanvas.pack()
 
 ovalID = gameCanvas.create_oval(30,40,10,20,fill="#FF5687",outline="orange",width=3)
-boardID = gameCanvas.create_rectangle(0,470,70,480,fill="black", outline="black",width=3)
+boardID = gameCanvas.create_rectangle(0,470,100,480,fill="black", outline="black",width=3)
 
 # image_file = tkinter.PhotoImage(file=r'./FlipFootballGameIcon.gif')
 # image = gameCanvas.create_image(0, 0, anchor='nw', image=image_file)
 
 
+scoreLabel = tkinter.Label(mainWindow, text="得分：")
+scoreLabel.place(x=400,y=10)
+varLabel = tkinter.Label(mainWindow, text=" ")
+varLabel.place(x=435,y=10)
+
 moveXBall = random.random() * 10 - 5  # -5，5
 moveYBall = random.random() * 10 - 5
+
+# def Scoring_rule(message):
+#     varLabel.config(message)
+
 
 class Board:
     moveXBoard = 0
@@ -36,6 +45,9 @@ board = Board()
 
 mainWindow.bind("<Left>",board.moveLeft)
 mainWindow.bind("<Right>",board.moveRight)
+
+realtimeScore = 0
+
 
 while True:
     boardCoord = gameCanvas.coords(boardID)
@@ -50,6 +62,8 @@ while True:
             signY = math.copysign(1, random.random() - 0.5)
             moveXBall = (random.random() * 4 + 4) * signX
             moveYBall = (random.random() * 4 + 4) * signY
+            realtimeScore += 1
+            varLabel.config(text=str(realtimeScore))
 
     elif ballCoord[0]+moveXBall<=0 or ballCoord[1]+moveYBall>=0 or ballCoord[2]+moveXBall>=500 or ballCoord[3]+moveYBall<=500:
         signX = math.copysign(1, random.random() - 0.5)
