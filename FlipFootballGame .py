@@ -2,6 +2,7 @@ import tkinter
 import time
 import random
 import math
+import tkinter.messagebox
 
 mainWindow = tkinter.Tk()
 mainWindow.title("小仙鹤的弹球游戏")
@@ -70,6 +71,10 @@ while True:
         signY = math.copysign(1, random.random() - 0.5)
         moveXBall = (random.random() * 4 + 4)*signX
         moveYBall = (random.random() * 4 + 4)*signY
+
+    if ballCoord[3]+moveYBall >= 480:
+        tkinter.messagebox.showinfo(title="🤪",message="Congratulation："+str(realtimeScore)+"!")
+
 
     mainWindow.update()
     time.sleep(0.08)
