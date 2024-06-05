@@ -73,7 +73,8 @@ while True:
         moveYBall = (random.random() * 4 + 4)*signY
 
     if ballCoord[3]+moveYBall >= 480:
-        tkinter.messagebox.showinfo(title="🤪",message="Congratulation："+str(realtimeScore)+"!")
+        tkinter.messagebox.showinfo(title="🤪",message="Congratulation："+str(realtimeScore)+" !")
+        break
 
 
     mainWindow.update()
